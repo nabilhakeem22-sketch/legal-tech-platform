@@ -11,8 +11,49 @@ export interface Roadmap {
 }
 
 // Logic to generate roadmap based on jurisdiction type + form
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function getRoadmap(jurisdictionType: string, _legalFormId: string): Roadmap {
+// Logic to generate roadmap based on jurisdiction type + form
+export function getRoadmap(jurisdictionType: string, _legalFormId: string, country: string): Roadmap {
+
+    // --- KSA ROADMAPS ---
+    if (country === 'KSA') {
+        return {
+            steps: [
+                { id: '1', title: 'MISA License', description: 'Apply for Investment License from Ministry of Investment.', duration: '1-3 Days', icon: 'License' },
+                { id: '2', title: 'Commercial Registration (CR)', description: 'Issue CR from Ministry of Commerce.', duration: '1 Day', icon: 'Doc' },
+                { id: '3', title: 'Chamber of Commerce', description: 'Register membership with Riyadh Chamber.', duration: '1 Day', icon: 'Approval' },
+                { id: '4', title: '700 Number & Govt. Files', description: 'Open files with ZATCA, MOL, and GOSI.', duration: '3-5 Days', icon: 'Doc' },
+                { id: '5', title: 'National Address', description: 'Register official physical address (Wasel).', duration: '1 Day', icon: 'Office' },
+                { id: '6', title: 'Bank Account', description: 'Physical visit required for KSA bank opening.', duration: '2-4 Weeks', icon: 'Bank' }
+            ]
+        };
+    }
+
+    // --- EGYPT ROADMAPS ---
+    if (country === 'Egypt') {
+        if (jurisdictionType === 'Free Zone') {
+            return {
+                steps: [
+                    { id: '1', title: 'GAFI Approval', description: 'Security clearance and project approval.', duration: '2-4 Weeks', icon: 'Approval' },
+                    { id: '2', title: 'Bank Certificate', description: 'Deposit 10% of capital in USD.', duration: '2-3 Days', icon: 'Bank' },
+                    { id: '3', title: 'Notarization', description: 'Sign AoA at GAFI center.', duration: '1 Day', icon: 'Doc' },
+                    { id: '4', title: 'Commercial Registry', description: 'Issuance of commercial registry.', duration: '1-2 Days', icon: 'License' },
+                    { id: '5', title: 'Tax Card', description: 'Issue tax number and file opening.', duration: '5-7 Days', icon: 'Doc' }
+                ]
+            };
+        }
+        // Mainland
+        return {
+            steps: [
+                { id: '1', title: 'Name Reservation', description: 'Reserve name at Commercial Registry.', duration: '1 Day', icon: 'Doc' },
+                { id: '2', title: 'Bank Deposition', description: 'Certificate of non-confusion (bank deposit not always required pre-inc).', duration: '1-2 Days', icon: 'Bank' },
+                { id: '3', title: 'Notary Public', description: 'Review and sign deeds at GAFI One-Stop Shop.', duration: '1 Day', icon: 'Doc' },
+                { id: '4', title: 'Incorporation', description: 'Receive Commercial Registry and Tax Card.', duration: '1-2 Days', icon: 'License' },
+                { id: '5', title: 'Value Added Tax', description: 'Register for VAT if applicable.', duration: 'Variable', icon: 'Doc' }
+            ]
+        };
+    }
+
+    // --- UAE & OTHERS DEFAULT ---
 
     // Generic UAE Mainland Roadmap
     if (jurisdictionType === 'Mainland') {

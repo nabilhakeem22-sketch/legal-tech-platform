@@ -9,7 +9,7 @@ export function StepRoadmap() {
 
     if (!selectedJurisdiction || !selectedLegalForm) return null;
 
-    const roadmap = getRoadmap(selectedJurisdiction.type, selectedLegalForm.id);
+    const roadmap = getRoadmap(selectedJurisdiction.type, selectedLegalForm.id, selectedJurisdiction.country);
 
     return (
         <div className="space-y-10 animate-in fade-in zoom-in-95 duration-700">

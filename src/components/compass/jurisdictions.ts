@@ -112,5 +112,59 @@ export const jurisdictions: Jurisdiction[] = [
         pros: ['Global Venture Capital standard', 'Strong legal protections', 'Tax flexibility'],
         cons: ['US Tax reporting obligations', 'Annual Franchise Tax']
         , description: "The gold standard for startups raising Venture Capital globally."
+    },
+    {
+        id: 'ksa_mainland',
+        name: 'KSA Ministry of Investment (MISA)',
+        country: 'KSA',
+        type: 'Mainland',
+        attributes: {
+            allowsRetail: true,
+            allowsCrypto: false,
+            minCapital: 0, // Varies, but often waived for services
+            costTier: 'High',
+            speed: 'Medium',
+            taxBenefit: false, // 20% Corporate Tax
+            requiresLocalPartner: false // 100% foreign ownership allowed now
+        },
+        pros: ['Access to largest market in MENA', '100% Foreign Ownership (MISA)', 'Government Tender eligibility'],
+        cons: ['Higher tax (20%)', 'Strict Saudization quotas']
+        , description: "The primary gateway to the Saudi market. Required for retail, contracting, and government work."
+    },
+    {
+        id: 'egypt_gafi',
+        name: 'General Authority for Investment (GAFI)',
+        country: 'Egypt',
+        type: 'Mainland',
+        attributes: {
+            allowsRetail: true,
+            allowsCrypto: false,
+            minCapital: 50000, // EGP, very low in USD
+            costTier: 'Low',
+            speed: 'Slow',
+            taxBenefit: false, // 22.5% CT
+            requiresLocalPartner: false
+        },
+        pros: ['Very low setup cost', 'Access to severe talent shortage', 'Large consumer base'],
+        cons: ['Currency fluctuation risk', 'Bureaucracy']
+        , description: "Mainland company registration for accessing the local Egyptian market and hiring local talent."
+    },
+    {
+        id: 'egypt_freezone',
+        name: 'Public Free Zone (Nasr City/Alex)',
+        country: 'Egypt',
+        type: 'Free Zone',
+        attributes: {
+            allowsRetail: false,
+            allowsCrypto: false,
+            minCapital: 100000, // USD usually required
+            costTier: 'Medium',
+            speed: 'Medium',
+            taxBenefit: true, // Export focused
+            requiresLocalPartner: false
+        },
+        pros: ['Duty free imports', 'Dollar based operations', 'Exemption from many local regulations'],
+        cons: ['Strict export requirements', 'Capital must be paid in USD']
+        , description: "Export-oriented zones perfect for manufacturing or global service hubs."
     }
 ];
