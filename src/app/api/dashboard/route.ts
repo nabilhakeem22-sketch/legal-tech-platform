@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { kpis, risks } from '@/lib/db';
+import { kpiData as kpis, riskData as risks } from '../../../lib/mock-data';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -20,9 +20,9 @@ export async function GET(request: Request) {
     return NextResponse.json({
         kpiData: filteredKPIs,
         riskData: filteredRisks.map(r => ({
-            name: r.title,
-            risk: r.value,
-            category: r.category
+            name: r.name,
+            risk: r.risk,
+            category: "General"
         }))
     });
 }

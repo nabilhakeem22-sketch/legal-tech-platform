@@ -1,13 +1,13 @@
 import { AlertTriangle, CheckCircle, FileText, Gavel } from "lucide-react";
 
 export const riskData = [
-    { name: "Jan", risk: 2400 },
-    { name: "Feb", risk: 1398 },
-    { name: "Mar", risk: 9800 },
-    { name: "Apr", risk: 3908 },
-    { name: "May", risk: 4800 },
-    { name: "Jun", risk: 3800 },
-    { name: "Jul", risk: 4300 },
+    { name: "Jan", risk: 2400, companyId: "comp_123" },
+    { name: "Feb", risk: 1398, companyId: "comp_123" },
+    { name: "Mar", risk: 9800, companyId: "comp_123" },
+    { name: "Apr", risk: 3908, companyId: "comp_123" },
+    { name: "May", risk: 4800, companyId: "comp_123" },
+    { name: "Jun", risk: 3800, companyId: "comp_123" },
+    { name: "Jul", risk: 4300, companyId: "comp_123" },
 ];
 
 export const kpiData = [
@@ -18,6 +18,7 @@ export const kpiData = [
         trend: "+2",
         trendUp: false,
         description: "from last month",
+        companyId: "comp_123"
     },
     {
         title: "Pending Audits",
@@ -26,6 +27,7 @@ export const kpiData = [
         trend: "-1",
         trendUp: true,
         description: "active reviews",
+        companyId: "comp_123"
     },
     {
         title: "Compliance Score",
@@ -34,6 +36,7 @@ export const kpiData = [
         trend: "+5%",
         trendUp: true,
         description: "points increase",
+        companyId: "comp_123"
     },
     {
         title: "Active Litigations",
@@ -42,6 +45,7 @@ export const kpiData = [
         trend: "+3",
         trendUp: false,
         description: "new cases",
+        companyId: "comp_123"
     },
 ];
 
@@ -77,9 +81,9 @@ export const regulations = [
 
 export const complianceTasks = [
     { id: 1, title: "Submit Annual Tax Return", due: "2025-12-31", completed: false, companyId: "comp_123" },
-    { id: 2, title: "Renew Commercial Register", due: "2026-01-15", completed: true },
-    { id: 3, title: "Social Insurance Filing (Form 2)", due: "2025-12-20", completed: false },
-    { id: 4, title: "Board Meeting Minutes Ratification", due: "2025-12-25", completed: false },
+    { id: 2, title: "Renew Commercial Register", due: "2026-01-15", completed: true, companyId: "comp_123" },
+    { id: 3, title: "Social Insurance Filing (Form 2)", due: "2025-12-20", completed: false, companyId: "comp_123" },
+    { id: 4, title: "Board Meeting Minutes Ratification", due: "2025-12-25", completed: false, companyId: "comp_123" },
 ];
 
 export const transactions = [
@@ -91,6 +95,7 @@ export const transactions = [
         date: "2025-12-09",
         type: "income",
         category: "Retainer",
+        companyId: "comp_123"
     },
     {
         id: 2,
@@ -100,6 +105,7 @@ export const transactions = [
         date: "2025-12-08",
         type: "expense",
         category: "Government Fees",
+        companyId: "comp_123"
     },
     {
         id: 3,
@@ -109,6 +115,7 @@ export const transactions = [
         date: "2025-12-01",
         type: "expense",
         category: "Operations",
+        companyId: "comp_123"
     },
     {
         id: 4,
@@ -118,6 +125,7 @@ export const transactions = [
         date: "2025-11-28",
         type: "income",
         category: "Consultation",
+        companyId: "comp_123"
     },
 ];
 

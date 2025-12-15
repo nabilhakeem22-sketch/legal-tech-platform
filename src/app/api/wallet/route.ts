@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { transactions } from '@/lib/db';
+import { transactions } from '../../../lib/mock-data';
 
 const budgetData = [
     { name: 'Legal Tech', value: 30000 },
