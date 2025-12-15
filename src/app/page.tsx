@@ -9,7 +9,7 @@ export default function Home() {
       <div className="text-center space-y-8 p-10 max-w-2xl">
         <div className="space-y-4">
           <h1 className="text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl">
-            Corporate OS
+            Comply360
           </h1>
           <p className="text-lg leading-8 text-muted-foreground">
             The all-in-one operating system for modern law firms in Egypt.
