@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 import { db } from '../../../lib/db';
 
-import { mockClients } from '../../../lib/mock-data';
+import { mockClients } from '../../../lib/demo-data';
 
 export async function GET() {
     try {
+        console.log("Attempting to fetch clients from DB...");
         const clients = await db.client.findMany({
             orderBy: { createdAt: 'desc' }
         });
@@ -18,6 +19,7 @@ export async function GET() {
     } catch (error) {
         console.error("Fetch Clients Error:", error);
         // Fallback to mock data on error for demo purposes
+        console.log("Returning mock data due to error.");
         return NextResponse.json(mockClients);
     }
 }

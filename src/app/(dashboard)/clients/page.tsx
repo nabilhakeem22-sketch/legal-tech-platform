@@ -23,9 +23,21 @@ export default function ClientsPage() {
 
     useEffect(() => {
         fetch('/api/clients')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to fetch");
+                return res.json();
+            })
             .then(data => {
-                setClients(data);
+                if (Array.isArray(data)) {
+                    setClients(data);
+                } else {
+                    console.error("API returned non-array data:", data);
+                    setClients([]); // Fallback to empty array to prevent crash
+                }
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Error loading clients:", err);
                 setLoading(false);
             });
     }, []);
