@@ -40,7 +40,23 @@ export default function ClientsPage() {
         setIsModalOpen(false);
     };
 
-    if (loading) return <div>Loading Clients...</div>;
+    if (loading) {
+        return (
+            <div className="space-y-6">
+                <div className="flex justify-between">
+                    <div className="h-10 w-48 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-10 w-32 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} className="h-40 bg-gray-100 rounded-lg animate-pulse"></div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    if (!clients) return <div className="p-8 text-center text-red-500">Failed to load clients.</div>;
 
     return (
         <div className="space-y-6">
