@@ -30,3 +30,36 @@ export const mockClients = [
         createdAt: new Date().toISOString()
     }
 ];
+
+export const mockCompanies = [
+    {
+        id: "comp_1",
+        nameEnglish: "Nile Textiles S.A.E",
+        nameArabic: "النيل للمنسوجات ش.م.م",
+        legalForm: "S.A.E",
+        status: "Compliant" as const,
+        crNumber: "123456",
+        taxId: "999-999-999",
+        clientId: "cli_1"
+    },
+    {
+        id: "comp_2",
+        nameEnglish: "Cairo Tech Solutions LLC",
+        nameArabic: "كايرو تك للحلول ذ.م.م",
+        legalForm: "LLC",
+        status: "Warning" as const,
+        crNumber: "654321",
+        taxId: "888-888-888",
+        clientId: "cli_2"
+    },
+    {
+        id: "comp_3",
+        nameEnglish: "Alexandria Imports",
+        nameArabic: "الإسكندرية للاستيراد",
+        legalForm: "Sole Proprietorship",
+        status: "Non-Compliant" as const,
+        crNumber: "111222",
+        taxId: "777-777-777",
+        clientId: "cli_1"
+    }
+];

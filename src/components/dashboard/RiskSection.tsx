@@ -30,21 +30,21 @@ function RiskCard({ title, count, description, borderColor, icon: Icon, actionTe
     };
 
     return (
-        <div className={cn("flex flex-col justify-between rounded-lg border border-gray-200 bg-white p-5 shadow-sm", borderClasses[borderColor], bgClasses[borderColor])}>
+        <div className={cn("flex flex-col justify-between rounded-lg border border-border bg-card p-5 shadow-sm", borderClasses[borderColor], bgClasses[borderColor])}>
             <div>
                 <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-semibold text-gray-700">{title}</h4>
+                    <h4 className="text-sm font-semibold text-card-foreground">{title}</h4>
                     <Icon className={cn("h-5 w-5", borderColor === "red" ? "text-red-500" : borderColor === "yellow" ? "text-yellow-500" : "text-orange-400")} />
                 </div>
                 <div className="mb-1">
-                    <span className="text-2xl font-bold text-gray-900">{count}</span>
+                    <span className="text-2xl font-bold text-foreground">{count}</span>
                 </div>
-                <p className="text-sm text-gray-500 mb-4">{description}</p>
+                <p className="text-sm text-muted-foreground mb-4">{description}</p>
             </div>
 
             {actionText && (
                 <div className="mt-auto pt-2">
-                    <Link href={actionHref || "#"} className="text-xs font-semibold text-indigo-600 hover:text-indigo-500 flex items-center">
+                    <Link href={actionHref || "#"} className="text-xs font-semibold text-primary hover:text-primary/80 flex items-center">
                         {actionText} <ArrowRight className="ml-1 h-3 w-3" />
                     </Link>
                 </div>
@@ -56,8 +56,8 @@ function RiskCard({ title, count, description, borderColor, icon: Icon, actionTe
 export function RiskSection() {
     return (
         <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-gray-700" />
+            <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-muted-foreground" />
                 Risk Attention required
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

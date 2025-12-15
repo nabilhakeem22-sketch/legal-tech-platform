@@ -30,9 +30,9 @@ export default function DashboardPage() {
     return (
         <div className="space-y-8 pb-10">
             <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h2>
                 <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-500">Last updated: Just now</span>
+                    <span className="text-sm text-muted-foreground">Last updated: Just now</span>
                 </div>
             </div>
 
@@ -79,9 +79,9 @@ export default function DashboardPage() {
 
                 {/* Panel B (Right): Activity Pulse (1/3 width) */}
                 <div className="h-full">
-                    <div className="rounded-lg border border-gray-200 bg-white shadow-sm p-6 h-full flex flex-col">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Activity Pulse</h3>
-                        <p className="text-sm text-gray-500 mb-6">Tasks Completed</p>
+                    <div className="rounded-lg border border-border bg-card shadow-sm p-6 h-full flex flex-col">
+                        <h3 className="text-lg font-semibold text-card-foreground mb-2">Activity Pulse</h3>
+                        <p className="text-sm text-muted-foreground mb-6">Tasks Completed</p>
                         <div className="flex-1 flex flex-col justify-center">
                             <ActivityPulseWidget />
                         </div>

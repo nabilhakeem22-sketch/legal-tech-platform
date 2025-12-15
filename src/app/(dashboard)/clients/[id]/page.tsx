@@ -46,7 +46,18 @@ export default function ClientDetailPage() {
         // Fetch Companies linked to this client
         fetch(`/api/companies?clientId=${params.id}`)
             .then(res => res.json())
-            .then(setCompanies);
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setCompanies(data);
+                } else {
+                    console.error("Expected array of companies, got:", data);
+                    setCompanies([]); // Fallback to empty array to prevent map errors
+                }
+            })
+            .catch(err => {
+                console.error("Failed to fetch companies:", err);
+                setCompanies([]);
+            });
     }, [params.id]);
 
     const handleCreateCompany = async (formData: Partial<Company>) => {
@@ -69,22 +80,22 @@ export default function ClientDetailPage() {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900">{client.name}</h1>
-                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                    <h1 className="text-3xl font-bold text-foreground">{client.name}</h1>
+                    <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
                         <span className="flex items-center"><UserAvatarIcon className="w-4 h-4 mr-1" /> {client.contactName}</span>
                         <span className="flex items-center"><Phone className="w-4 h-4 mr-1" /> {client.phone}</span>
                         <span className="flex items-center"><Mail className="w-4 h-4 mr-1" /> {client.email}</span>
                     </div>
                 </div>
                 <div className="flex gap-3">
-                    <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                    <button className="px-4 py-2 text-sm font-medium text-foreground bg-card border border-border rounded-md hover:bg-muted/50">
                         Edit Profile
                     </button>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500"
+                        className="flex items-center px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md hover:bg-primary/90"
                     >
                         <Plus className="w-4 h-4 mr-2" />
                         Add Company
@@ -93,7 +104,7 @@ export default function ClientDetailPage() {
             </div>
 
             {/* Tabs */}
-            <div className="border-b border-gray-200">
+            <div className="border-b border-border">
                 <nav className="-mb-px flex space-x-8">
                     {['Overview', 'Companies', 'Portal Settings'].map((tab) => (
                         <button
@@ -102,8 +113,8 @@ export default function ClientDetailPage() {
                             className={`
                                 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium
                                 ${activeTab === tab.toLowerCase().split(' ')[0]
-                                    ? 'border-indigo-500 text-indigo-600'
-                                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}
+                                    ? 'border-primary text-primary'
+                                    : 'border-transparent text-muted-foreground hover:border-border hover:text-foreground'}
                             `}
                         >
                             {tab}
@@ -117,27 +128,27 @@ export default function ClientDetailPage() {
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {companies.map((company) => (
                         <Link href={`/companies/${company.id}`} key={company.id}>
-                            <Card className="cursor-pointer hover:shadow-md transition-shadow border-l-4 border-l-indigo-500 h-full">
+                            <Card className="cursor-pointer hover:shadow-md transition-shadow border-l-4 border-l-primary h-full">
                                 <CardHeader className="pb-2">
                                     <div className="flex justify-between items-start">
                                         <CardTitle className="text-lg font-semibold">{company.nameEnglish}</CardTitle>
                                         <StatusBadge status={company.status} />
                                     </div>
-                                    <p className="text-xs text-gray-400 font-arabic">{company.nameArabic}</p>
+                                    <p className="text-xs text-muted-foreground font-arabic">{company.nameArabic}</p>
                                 </CardHeader>
                                 <CardContent>
-                                    <div className="space-y-2 text-sm text-gray-600 mt-2">
+                                    <div className="space-y-2 text-sm text-muted-foreground mt-2">
                                         <div className="flex justify-between">
                                             <span>Legal Form:</span>
-                                            <span className="font-medium">{company.legalForm}</span>
+                                            <span className="font-medium text-card-foreground">{company.legalForm}</span>
                                         </div>
                                         <div className="flex justify-between">
                                             <span>CR #:</span>
-                                            <span className="font-mono">{company.crNumber}</span>
+                                            <span className="font-mono text-card-foreground">{company.crNumber}</span>
                                         </div>
                                         <div className="flex justify-between">
                                             <span>Tax ID:</span>
-                                            <span className="font-mono">{company.taxId}</span>
+                                            <span className="font-mono text-card-foreground">{company.taxId}</span>
                                         </div>
                                     </div>
                                 </CardContent>
@@ -146,14 +157,14 @@ export default function ClientDetailPage() {
                     ))}
 
                     {companies.length === 0 && (
-                        <div className="col-span-full py-12 text-center border-2 border-dashed border-gray-300 rounded-lg">
-                            <Building2 className="movie-icon mx-auto h-12 w-12 text-gray-400" />
-                            <h3 className="mt-2 text-sm font-semibold text-gray-900">No companies</h3>
-                            <p className="mt-1 text-sm text-gray-500">Get started by creating a new legal entity.</p>
+                        <div className="col-span-full py-12 text-center border-2 border-dashed border-border rounded-lg">
+                            <Building2 className="movie-icon mx-auto h-12 w-12 text-muted-foreground" />
+                            <h3 className="mt-2 text-sm font-semibold text-foreground">No companies</h3>
+                            <p className="mt-1 text-sm text-muted-foreground">Get started by creating a new legal entity.</p>
                             <div className="mt-6">
                                 <button
                                     onClick={() => setIsModalOpen(true)}
-                                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    className="inline-flex items-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                                 >
                                     <Plus className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
                                     New Company
@@ -165,7 +176,7 @@ export default function ClientDetailPage() {
             )}
 
             {activeTab === 'overview' && (
-                <div className="p-4 bg-gray-50 rounded text-gray-500 text-center">
+                <div className="p-4 bg-muted/50 rounded text-muted-foreground text-center">
                     Financial Overview & Contact Details Placeholder
                 </div>
             )}

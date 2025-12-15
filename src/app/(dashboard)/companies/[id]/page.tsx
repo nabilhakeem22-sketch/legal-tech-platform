@@ -48,11 +48,18 @@ export default function CompanyDashboardPage() {
     useEffect(() => {
         const loadData = async () => {
             // 1. Fetch Company Details
-            // const coRes = await fetch(`/api/companies?clientId=all`); // We need a way to get specific company. existing api filters by client. 
-            // Quick fix: fetch all and find or add endpoint support. 
-            // Let's assume for MVP filtering client list works or I update API to get single company.
-            const allCompanies = await (await fetch('/api/companies')).json();
-            const found = allCompanies.find((c: Company) => c.id === params.id);
+            let allCompanies: Company[] = [];
+            try {
+                const res = await fetch('/api/companies');
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    allCompanies = data;
+                }
+            } catch (err) {
+                console.error("Failed to fetch companies:", err);
+                // Fallback to empty or mock if needed
+            }
+            const found = allCompanies.find((c: Company) => c.id === params.id) || null;
             setCompany(found);
 
             if (found) {
@@ -82,13 +89,13 @@ export default function CompanyDashboardPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center gap-4 border-b border-gray-200 pb-4">
-                <Link href={`/clients/${company.clientId}`} className="p-2 hover:bg-gray-100 rounded-full">
-                    <ArrowLeft className="h-5 w-5 text-gray-500" />
+            <div className="flex items-center gap-4 border-b border-border pb-4">
+                <Link href={`/clients/${company.clientId}`} className="p-2 hover:bg-muted rounded-full">
+                    <ArrowLeft className="h-5 w-5 text-muted-foreground" />
                 </Link>
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">{company.nameEnglish}</h1>
-                    <span className="text-sm text-gray-500 font-mono">{company.legalForm} • {company.status}</span>
+                    <h1 className="text-2xl font-bold text-foreground">{company.nameEnglish}</h1>
+                    <span className="text-sm text-muted-foreground font-mono">{company.legalForm} • {company.status}</span>
                 </div>
             </div>
 
@@ -111,8 +118,8 @@ export default function CompanyDashboardPage() {
                 {/* Left: Risk Chart */}
                 <div className="lg:col-span-2">
                     <RiskOverviewChart data={riskData} />
-                    <div className="mt-6 bg-white rounded-lg shadow p-6">
-                        <h3 className="text-lg font-semibold mb-4">Relevant Transactions</h3>
+                    <div className="mt-6 bg-card rounded-lg shadow p-6 border border-border">
+                        <h3 className="text-lg font-semibold mb-4 text-card-foreground">Relevant Transactions</h3>
                         <TransactionList data={transactions} />
                     </div>
                 </div>
