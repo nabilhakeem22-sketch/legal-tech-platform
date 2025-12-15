@@ -30,19 +30,19 @@ export default function FilingDetailsPage() {
         <div className="space-y-6 pb-10">
             {/* Header */}
             <div>
-                <Link href="/tax" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 mb-4">
+                <Link href="/tax" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-4">
                     <ArrowLeft className="mr-1 h-4 w-4" /> Back to Tracker
                 </Link>
                 <div className="flex items-center justify-between">
                     <div>
-                        <h2 className="text-2xl font-bold tracking-tight text-gray-900">{filing.client}</h2>
-                        <p className="text-gray-500 mt-1 flex items-center gap-4">
+                        <h2 className="text-2xl font-bold tracking-tight text-foreground">{filing.client}</h2>
+                        <p className="text-muted-foreground mt-1 flex items-center gap-4">
                             <span className="flex items-center gap-1"><Building2 className="h-4 w-4" /> Reg: {filing.registrationNumber}</span>
                             <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> Period: {filing.period}</span>
                         </p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <span className="inline-flex items-center rounded-md bg-yellow-50 px-3 py-1 text-sm font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                        <span className="inline-flex items-center rounded-md bg-yellow-500/10 px-3 py-1 text-sm font-medium text-yellow-500 ring-1 ring-inset ring-yellow-500/20">
                             Status: {filing.status}
                         </span>
                         <button className="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
@@ -57,16 +57,16 @@ export default function FilingDetailsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Left Column: Docs */}
                 <div className="lg:col-span-2 space-y-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                        <h3 className="font-semibold text-gray-900 mb-4">Filing Details</h3>
+                    <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
+                        <h3 className="font-semibold text-foreground mb-4">Filing Details</h3>
                         <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                                <p className="text-gray-500">Tax Type</p>
-                                <p className="font-medium">{filing.taxType}</p>
+                                <p className="text-muted-foreground">Tax Type</p>
+                                <p className="font-medium text-foreground">{filing.taxType}</p>
                             </div>
                             <div>
-                                <p className="text-gray-500">Deadline</p>
-                                <p className="font-medium text-orange-600">{filing.deadline}</p>
+                                <p className="text-muted-foreground">Deadline</p>
+                                <p className="font-medium text-orange-500">{filing.deadline}</p>
                             </div>
                         </div>
                     </div>

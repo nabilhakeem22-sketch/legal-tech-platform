@@ -31,9 +31,9 @@ export function ComplianceChecklist({ data }: { data: Task[] }) {
             <CardHeader>
                 <CardTitle className="flex justify-between items-center">
                     <span>Action Required</span>
-                    <span className="text-sm font-normal text-gray-500">{progress}% Complete</span>
+                    <span className="text-sm font-normal text-muted-foreground">{progress}% Complete</span>
                 </CardTitle>
-                <div className="w-full bg-gray-100 rounded-full h-2 mt-2">
+                <div className="w-full bg-muted rounded-full h-2 mt-2">
                     <div className="bg-green-500 h-2 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
                 </div>
             </CardHeader>
@@ -42,19 +42,19 @@ export function ComplianceChecklist({ data }: { data: Task[] }) {
                     {tasks.map((task) => (
                         <div
                             key={task.id}
-                            className="flex items-start space-x-3 p-2 rounded hover:bg-gray-50 cursor-pointer transition-colors"
+                            className="flex items-start space-x-3 p-2 rounded hover:bg-muted cursor-pointer transition-colors"
                             onClick={() => toggleTask(task.id)}
                         >
                             {task.completed ? (
                                 <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5" />
                             ) : (
-                                <Circle className="h-5 w-5 text-gray-300 mt-0.5" />
+                                <Circle className="h-5 w-5 text-muted-foreground/30 mt-0.5" />
                             )}
                             <div className="flex-1">
-                                <p className={cn("text-sm font-medium", task.completed && "text-gray-400 line-through")}>
+                                <p className={cn("text-sm font-medium", task.completed ? "text-muted-foreground line-through" : "text-foreground")}>
                                     {task.title}
                                 </p>
-                                <p className="text-xs text-gray-500">Due: {task.due}</p>
+                                <p className="text-xs text-muted-foreground">Due: {task.due}</p>
                             </div>
                         </div>
                     ))}

@@ -24,9 +24,9 @@ function RiskCard({ title, count, description, borderColor, icon: Icon, actionTe
     };
 
     const bgClasses = {
-        red: "bg-red-50/10",
-        yellow: "bg-yellow-50/10",
-        gray: "bg-gray-50",
+        red: "bg-red-500/10",
+        yellow: "bg-yellow-500/10",
+        gray: "bg-muted/50",
     };
 
     return (

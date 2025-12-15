@@ -25,17 +25,17 @@ export function TransactionList({ data }: TransactionListProps) {
             <CardContent>
                 <div className="space-y-4">
                     {data && data.map((tx) => (
-                        <div key={tx.id} className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                        <div key={tx.id} className="flex items-center justify-between border-b border-border pb-4 last:border-0 last:pb-0">
                             <div className="flex items-center space-x-4">
-                                <div className={`p-2 rounded-full ${tx.type === 'income' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
+                                <div className={`p-2 rounded-full ${tx.type === 'income' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                                     {tx.type === 'income' ? <ArrowDownLeft className="h-4 w-4" /> : <ArrowUpRight className="h-4 w-4" />}
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-gray-900">{tx.description}</p>
-                                    <p className="text-xs text-gray-500">{tx.date} • {tx.category}</p>
+                                    <p className="text-sm font-medium text-foreground">{tx.description}</p>
+                                    <p className="text-xs text-muted-foreground">{tx.date} • {tx.category}</p>
                                 </div>
                             </div>
-                            <div className={`text-sm font-semibold ${tx.type === 'income' ? 'text-green-600' : 'text-gray-900'}`}>
+                            <div className={`text-sm font-semibold ${tx.type === 'income' ? 'text-green-500' : 'text-foreground'}`}>
                                 {tx.amount} {tx.currency}
                             </div>
                         </div>
