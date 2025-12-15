@@ -20,7 +20,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     ></div>
 
                     {/* Sidebar Panel */}
-                    <div className="fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-white">
+                    <div className="fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-card">
                         <div className="absolute top-0 right-0 -mr-12 pt-2">
                             <button
                                 type="button"
@@ -28,7 +28,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                                 onClick={() => setSidebarOpen(false)}
                             >
                                 <span className="sr-only">Close sidebar</span>
-                                <X className="h-6 w-6 text-white" aria-hidden="true" />
+                                <X className="h-6 w-6 text-foreground" aria-hidden="true" />
                             </button>
                         </div>
                         <Sidebar />
@@ -43,7 +43,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
             <div className="lg:pl-64 flex flex-col flex-1 h-full">
                 {/* TopBar with Mobile Menu Button */}
-                <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow-sm border-b border-gray-200 lg:hidden px-4 justify-between items-center">
+                <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-background shadow-sm border-b border-border lg:hidden px-4 justify-between items-center">
                     <button
                         type="button"
                         className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"

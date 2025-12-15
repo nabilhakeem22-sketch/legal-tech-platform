@@ -22,66 +22,66 @@ const filings: Filing[] = [
 ];
 
 const statusStyles = {
-    "Pending Docs": "bg-red-50 text-red-700 ring-red-600/10",
-    "Preparation": "bg-yellow-50 text-yellow-800 ring-yellow-600/20",
-    "Under Review": "bg-blue-50 text-blue-700 ring-blue-700/10",
-    "Filed": "bg-indigo-50 text-indigo-700 ring-indigo-700/10",
-    "Paid": "bg-green-50 text-green-700 ring-green-600/20",
+    "Pending Docs": "bg-red-500/10 text-red-500 ring-red-500/20",
+    "Preparation": "bg-yellow-500/10 text-yellow-500 ring-yellow-500/20",
+    "Under Review": "bg-blue-500/10 text-blue-500 ring-blue-500/20",
+    "Filed": "bg-indigo-500/10 text-indigo-500 ring-indigo-500/20",
+    "Paid": "bg-green-500/10 text-green-500 ring-green-500/20",
 };
 
 export function FilingTracker() {
     return (
-        <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
-            <div className="border-b border-gray-200 px-6 py-4 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+        <div className="rounded-lg border border-border bg-card shadow-sm overflow-hidden">
+            <div className="border-b border-border px-6 py-4 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
                 <div>
-                    <h3 className="font-semibold text-gray-900">Filing Tracker</h3>
-                    <p className="text-sm text-gray-500">Track status of client tax returns</p>
+                    <h3 className="font-semibold text-foreground">Filing Tracker</h3>
+                    <p className="text-sm text-muted-foreground">Track status of client tax returns</p>
                 </div>
                 <div className="flex gap-2">
                     <div className="relative rounded-md shadow-sm">
                         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <Search className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                            <Search className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
                         </div>
                         <input
                             type="text"
                             name="search"
                             id="search"
-                            className="block w-full rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 pl-10 text-foreground bg-muted/50 ring-1 ring-inset ring-border placeholder:text-muted-foreground focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                             placeholder="Search client..."
                         />
                     </div>
-                    <button type="button" className="inline-flex items-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        <Filter className="-ml-0.5 h-4 w-4 text-gray-400" aria-hidden="true" />
+                    <button type="button" className="inline-flex items-center gap-x-1.5 rounded-md bg-card px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted">
+                        <Filter className="-ml-0.5 h-4 w-4 text-muted-foreground" aria-hidden="true" />
                         Filter
                     </button>
                 </div>
             </div>
 
             <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                <table className="min-w-full divide-y divide-border">
+                    <thead className="bg-muted">
                         <tr>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tax Type</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deadline</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Client</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Tax Type</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Period</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Deadline</th>
                             <th scope="col" className="relative px-6 py-3">
                                 <span className="sr-only">Edit</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-card divide-y divide-border">
                         {filings.map((filing) => (
-                            <tr key={filing.id} className="hover:bg-gray-50/50">
+                            <tr key={filing.id} className="hover:bg-muted/50">
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">{filing.client}</div>
+                                    <div className="text-sm font-medium text-foreground">{filing.client}</div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">{filing.taxType}</div>
+                                    <div className="text-sm text-muted-foreground">{filing.taxType}</div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">{filing.period}</div>
+                                    <div className="text-sm text-muted-foreground">{filing.period}</div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <span className={cn(
@@ -91,15 +91,15 @@ export function FilingTracker() {
                                         {filing.status}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                                     {filing.deadline === "Done" ? (
-                                        <span className="text-green-600 flex items-center gap-1"><CheckCircle2 className="h-4 w-4" /> Done</span>
+                                        <span className="text-green-500 flex items-center gap-1"><CheckCircle2 className="h-4 w-4" /> Done</span>
                                     ) : (
-                                        <span className="text-gray-900 font-medium">{filing.deadline}</span>
+                                        <span className="text-foreground font-medium">{filing.deadline}</span>
                                     )}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <Link href={`/tax/filing/${filing.id}`} className="text-indigo-600 hover:text-indigo-900">Manage</Link>
+                                    <Link href={`/tax/filing/${filing.id}`} className="text-primary hover:text-primary/80">Manage</Link>
                                 </td>
                             </tr>
                         ))}

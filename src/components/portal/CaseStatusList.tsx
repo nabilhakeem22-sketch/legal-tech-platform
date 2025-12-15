@@ -19,22 +19,22 @@ export function CaseStatusList({ data }: { data: Case[] }) {
             <CardContent>
                 <div className="space-y-4">
                     {data && data.map((c) => (
-                        <div key={c.id} className="border rounded-lg p-4 bg-gray-50 border-gray-100">
+                        <div key={c.id} className="border rounded-lg p-4 bg-muted/30 border-border">
                             <div className="flex justify-between items-start mb-2">
                                 <div>
-                                    <h4 className="font-semibold text-gray-900">{c.title}</h4>
-                                    <p className="text-xs text-gray-500">{c.id}</p>
+                                    <h4 className="font-semibold text-foreground">{c.title}</h4>
+                                    <p className="text-xs text-muted-foreground">{c.id}</p>
                                 </div>
-                                <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">
+                                <span className="px-2 py-1 text-xs font-medium bg-blue-500/10 text-blue-500 rounded-full border border-blue-500/20">
                                     {c.status}
                                 </span>
                             </div>
-                            <div className="flex items-center text-sm text-gray-600 mb-1">
-                                <Clock className="h-4 w-4 mr-2 text-gray-400" />
+                            <div className="flex items-center text-sm text-muted-foreground mb-1">
+                                <Clock className="h-4 w-4 mr-2 text-muted-foreground" />
                                 <span>Next: {c.nextStep} ({c.date})</span>
                             </div>
-                            <div className="flex items-center text-sm text-gray-600">
-                                <FileText className="h-4 w-4 mr-2 text-gray-400" />
+                            <div className="flex items-center text-sm text-muted-foreground">
+                                <FileText className="h-4 w-4 mr-2 text-muted-foreground" />
                                 <span>Handled by: {c.lawyer}</span>
                             </div>
                         </div>

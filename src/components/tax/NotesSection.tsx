@@ -32,21 +32,21 @@ export function NotesSection() {
     };
 
     return (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm h-full flex flex-col">
-            <h3 className="text-base font-semibold text-gray-900 mb-4">Activity & Notes</h3>
+        <div className="rounded-lg border border-border bg-card p-6 shadow-sm h-full flex flex-col">
+            <h3 className="text-base font-semibold text-foreground mb-4">Activity & Notes</h3>
 
             <div className="flex-1 overflow-y-auto max-h-[300px] space-y-6 mb-4 pr-2">
                 {notes.map((note) => (
                     <div key={note.id} className="flex gap-3">
-                        <div className="flex-none h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600">
+                        <div className="flex-none h-8 w-8 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-muted-foreground">
                             {note.user.charAt(0)}
                         </div>
                         <div>
                             <div className="flex items-baseline gap-2">
-                                <span className="text-sm font-semibold text-gray-900">{note.user}</span>
-                                <span className="text-xs text-gray-500">{note.date}</span>
+                                <span className="text-sm font-semibold text-foreground">{note.user}</span>
+                                <span className="text-xs text-muted-foreground">{note.date}</span>
                             </div>
-                            <p className="text-sm text-gray-600 mt-1">{note.text}</p>
+                            <p className="text-sm text-muted-foreground mt-1">{note.text}</p>
                         </div>
                     </div>
                 ))}
@@ -58,12 +58,12 @@ export function NotesSection() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && addNote()}
-                    className="block w-full rounded-md border-0 py-2.5 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-2.5 pr-10 text-foreground bg-muted/50 ring-1 ring-inset ring-border placeholder:text-muted-foreground focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                     placeholder="Add a note..."
                 />
                 <button
                     onClick={addNote}
-                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-indigo-600 hover:text-indigo-500"
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-primary hover:text-primary/80"
                 >
                     <Send className="h-4 w-4" />
                 </button>
