@@ -3,7 +3,8 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { User, Shield, LogOut, Settings, Bell, CreditCard } from "lucide-react";
+import Image from "next/image";
+import { User, Shield, LogOut, CreditCard } from "lucide-react";
 
 export default function AdminProfile() {
     const { data: session, status } = useSession();
@@ -29,17 +30,19 @@ export default function AdminProfile() {
                 <div className="flex items-center space-x-5">
                     <div className="flex-shrink-0">
                         <div className="relative">
-                            <img
+                            <Image
                                 className="h-16 w-16 rounded-full border-2 border-white shadow-sm"
                                 src={session.user?.image || "https://ui-avatars.com/api/?name=Admin"}
                                 alt=""
+                                width={64}
+                                height={64}
                             />
                             <div className="absolute bottom-0 right-0 h-4 w-4 rounded-full bg-green-400 border-2 border-white"></div>
                         </div>
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">{session.user?.name}</h1>
-                        <p className="text-sm font-medium text-gray-500">{session.user?.email} • {(session.user as any).role || 'User'}</p>
+                        <p className="text-sm font-medium text-gray-500">{session.user?.email} • {(session.user as { role?: string }).role || 'User'}</p>
                     </div>
                 </div>
                 <div className="mt-4 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-y-0 sm:space-x-3 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">

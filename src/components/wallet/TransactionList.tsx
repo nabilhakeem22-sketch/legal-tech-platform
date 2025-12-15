@@ -1,16 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
 
+export interface Transaction {
+    id: number;
+    type: 'income' | 'expense';
+    description: string;
+    date: string;
+    category: string;
+    amount: string;
+    currency: string;
+}
+
 interface TransactionListProps {
-    data: Array<{
-        id: number;
-        type: 'income' | 'expense';
-        description: string;
-        date: string;
-        category: string;
-        amount: string;
-        currency: string;
-    }>;
+    data: Transaction[];
 }
 
 export function TransactionList({ data }: TransactionListProps) {

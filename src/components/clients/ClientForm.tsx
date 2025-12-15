@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { User, Building2, Mail, Phone } from "lucide-react";
 
-interface ClientData {
+export interface ClientData {
     name: string;
-    type: string;
+    type: "Individual" | "Corporate";
     contactName: string;
     email: string;
     phone: string;
@@ -19,7 +19,7 @@ interface ClientFormProps {
 
 export function ClientForm({ onSubmit, onCancel }: ClientFormProps) {
     const [isLoading, setIsLoading] = useState(false);
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<ClientData>({
         name: "",
         type: "Corporate",
         contactName: "",

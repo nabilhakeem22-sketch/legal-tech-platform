@@ -30,7 +30,7 @@ export default function ClientsPage() {
             });
     }, []);
 
-    const handleCreateClient = async (formData: any) => {
+    const handleCreateClient = async (formData: Partial<Client>) => {
         const res = await fetch('/api/clients', {
             method: 'POST',
             body: JSON.stringify(formData)

@@ -22,23 +22,37 @@ interface Company {
     status: string;
 }
 
+import { ChartData } from "@/components/dashboard/RiskChart";
+import { Transaction } from "@/components/wallet/TransactionList";
+import { Regulation } from "@/components/compliance/RegulatoryFeed";
+
+interface KpiItem {
+    title: string;
+    value: string;
+    icon: string;
+    trend: string;
+    change: string;
+}
+
+// Transaction interface imported
+
 export default function CompanyDashboardPage() {
     const params = useParams<{ id: string }>();
     const [company, setCompany] = useState<Company | null>(null);
-    const [kpiData, setKpiData] = useState<any[]>([]);
-    const [riskData, setRiskData] = useState<any[]>([]);
-    const [regulations, setRegulations] = useState<any[]>([]);
-    const [transactions, setTransactions] = useState<any[]>([]);
+    const [kpiData, setKpiData] = useState<KpiItem[]>([]);
+    const [riskData, setRiskData] = useState<ChartData[]>([]);
+    const [regulations, setRegulations] = useState<Regulation[]>([]);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const loadData = async () => {
             // 1. Fetch Company Details
-            const coRes = await fetch(`/api/companies?clientId=all`); // We need a way to get specific company. existing api filters by client. 
+            // const coRes = await fetch(`/api/companies?clientId=all`); // We need a way to get specific company. existing api filters by client. 
             // Quick fix: fetch all and find or add endpoint support. 
             // Let's assume for MVP filtering client list works or I update API to get single company.
             const allCompanies = await (await fetch('/api/companies')).json();
-            const found = allCompanies.find((c: any) => c.id === params.id);
+            const found = allCompanies.find((c: Company) => c.id === params.id);
             setCompany(found);
 
             if (found) {

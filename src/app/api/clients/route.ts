@@ -8,6 +8,7 @@ export async function GET() {
         });
         return NextResponse.json(clients);
     } catch (error) {
+        console.error("Fetch Clients Error:", error);
         return NextResponse.json({ error: 'Failed to fetch clients' }, { status: 500 });
     }
 }

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface Regulation {
+export interface Regulation {
     id: number;
     title: string;
     body: string;

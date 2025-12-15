@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Building2, Plus, Phone, Mail, Globe, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
+import { Building2, Plus, Phone, Mail, User as ClientUserIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -49,7 +49,7 @@ export default function ClientDetailPage() {
             .then(setCompanies);
     }, [params.id]);
 
-    const handleCreateCompany = async (formData: any) => {
+    const handleCreateCompany = async (formData: Partial<Company>) => {
         const newCompany = {
             clientId: params.id,
             ...formData
@@ -73,7 +73,7 @@ export default function ClientDetailPage() {
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900">{client.name}</h1>
                     <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
-                        <span className="flex items-center"><UserIcon className="w-4 h-4 mr-1" /> {client.contactName}</span>
+                        <span className="flex items-center"><UserAvatarIcon className="w-4 h-4 mr-1" /> {client.contactName}</span>
                         <span className="flex items-center"><Phone className="w-4 h-4 mr-1" /> {client.phone}</span>
                         <span className="flex items-center"><Mail className="w-4 h-4 mr-1" /> {client.email}</span>
                     </div>
@@ -195,7 +195,7 @@ function StatusBadge({ status }: { status: string }) {
     return <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">❌ Non-Compliant</span>;
 }
 
-function UserIcon({ className }: { className?: string }) {
+function UserAvatarIcon({ className }: { className?: string }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
             <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />

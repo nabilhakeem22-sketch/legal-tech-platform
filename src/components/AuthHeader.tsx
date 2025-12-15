@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { LogIn, LogOut } from "lucide-react";
+import Image from "next/image";
 
 export function AuthHeader() {
     const { data: session } = useSession();
@@ -25,10 +26,12 @@ export function AuthHeader() {
                                 {session.user?.name}
                             </span>
                             <Link href="/admin/profile">
-                                <img
+                                <Image
                                     className="h-8 w-8 rounded-full cursor-pointer bg-gray-100"
                                     src={session.user?.image || "https://img.freepik.com/premium-vector/avatar-icon002_750950-52.jpg"}
                                     alt="Profile"
+                                    width={32}
+                                    height={32}
                                 />
                             </Link>
                             <button
