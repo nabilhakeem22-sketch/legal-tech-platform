@@ -40,20 +40,20 @@ function WizardContainer() {
         <div className="max-w-4xl mx-auto py-10 px-4">
             {/* Header */}
             <div className="mb-10 text-center">
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-2">The Compliance Compass</h1>
-                <p className="text-gray-500">Navigate the legal landscape and find your perfect structure.</p>
+                <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2">The Compliance Compass</h1>
+                <p className="text-muted-foreground">Navigate the legal landscape and find your perfect structure.</p>
             </div>
 
             {/* Progress Bar */}
             {showProgress && (
                 <div className="mb-8">
-                    <div className="flex justify-between text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                    <div className="flex justify-between text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                         <span>Step {step} of 6</span>
                         <span>{titles[step - 1]}</span>
                     </div>
-                    <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                    <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-indigo-600 transition-all duration-500 ease-in-out"
+                            className="h-full bg-primary transition-all duration-500 ease-in-out"
                             style={{ width: `${progress}%` }}
                         />
                     </div>
@@ -62,7 +62,7 @@ function WizardContainer() {
 
             {/* Card */}
             <div className={cn(
-                "bg-white rounded-2xl shadow-sm border border-gray-200 transition-all duration-500",
+                "bg-card rounded-2xl shadow-sm border border-border transition-all duration-500",
                 step === 7 ? "p-0 border-none shadow-none bg-transparent" : "p-8 md:p-12 min-h-[400px] flex flex-col"
             )}>
                 <div className="flex-1 overflow-hidden">
@@ -81,11 +81,11 @@ function WizardContainer() {
 
                 {/* Navigation Buttons */}
                 {step < 7 && (
-                    <div className="mt-12 flex justify-between pt-6 border-t border-gray-100">
+                    <div className="mt-12 flex justify-between pt-6 border-t border-border">
                         <button
                             onClick={prevStep}
                             disabled={step === 1}
-                            className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 disabled:opacity-30 disabled:hover:text-gray-500 transition-colors"
+                            className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:hover:text-muted-foreground transition-colors"
                         >
                             <ChevronLeft className="mr-1 h-4 w-4" /> Back
                         </button>
@@ -94,7 +94,7 @@ function WizardContainer() {
                         {step < 5 && (
                             <button
                                 onClick={nextStep}
-                                className="rounded-lg bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center transition-all active:scale-95"
+                                className="rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary flex items-center transition-all active:scale-95"
                             >
                                 Next Step <ChevronRight className="ml-1 h-4 w-4" />
                             </button>

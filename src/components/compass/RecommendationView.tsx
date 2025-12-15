@@ -9,9 +9,9 @@ export function RecommendationView() {
 
     if (!recommendations || recommendations.length === 0) {
         return (
-            <div className="text-center py-20 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
-                <h3 className="text-xl font-bold text-gray-900">No matching structure found.</h3>
-                <p className="text-gray-500 mt-2">Try adjusting your capital or activity filters to find a match.</p>
+            <div className="text-center py-20 bg-muted/30 rounded-2xl border-2 border-dashed border-border">
+                <h3 className="text-xl font-bold text-foreground">No matching structure found.</h3>
+                <p className="text-muted-foreground mt-2">Try adjusting your capital or activity filters to find a match.</p>
             </div>
         );
     }
