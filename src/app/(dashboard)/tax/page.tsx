@@ -4,12 +4,13 @@ import { FilingTracker } from "@/components/tax/FilingTracker";
 import { TaxCalendarWidget } from "@/components/tax/TaxCalendarWidget";
 import { TaxKanbanBoard } from "@/components/tax/TaxKanbanBoard";
 import { FullTaxCalendar } from "@/components/tax/FullTaxCalendar";
-import { BadgePercent, Building2, TrendingDown, LayoutList, Kanban, Calendar as CalendarIcon } from "lucide-react";
+import { TaxCalculator } from "@/components/tax/TaxCalculator";
+import { BadgePercent, Building2, TrendingDown, LayoutList, Kanban, Calendar as CalendarIcon, Calculator } from "lucide-react";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-type ViewMode = "list" | "kanban" | "calendar";
+type ViewMode = "list" | "kanban" | "calendar" | "calculator";
 
 export default function TaxPage() {
     const [viewMode, setViewMode] = useState<ViewMode>("list");
@@ -50,6 +51,15 @@ export default function TaxPage() {
                         >
                             <CalendarIcon className="h-4 w-4 mr-2" /> Calendar
                         </button>
+                        <button
+                            onClick={() => setViewMode("calculator")}
+                            className={cn(
+                                "flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all",
+                                viewMode === "calculator" ? "bg-background text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"
+                            )}
+                        >
+                            <Calculator className="h-4 w-4 mr-2" /> Calculator
+                        </button>
                     </div>
                     <button className="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
                         + New Filing Task
@@ -57,7 +67,7 @@ export default function TaxPage() {
                 </div>
             </div>
 
-            {/* KPIs - Always visible for now, or maybe hide on Calendar to save space? Keeping them provides context. */}
+            {/* KPIs - Always visible now */}
             <div className="grid gap-4 md:grid-cols-3">
                 <StatCard
                     title="Compliance Rate"
@@ -84,7 +94,7 @@ export default function TaxPage() {
             {/* Main Content Area */}
             <div className="flex-1 min-h-[500px]">
                 {viewMode === "list" && (
-                    <div className="grid gap-6 lg:grid-cols-3 h-full">
+                    <div className="grid gap-6 lg:grid-cols-3 h-full animate-in fade-in duration-300">
                         <div className="lg:col-span-2 space-y-6">
                             <FilingTracker />
                         </div>
@@ -110,14 +120,20 @@ export default function TaxPage() {
                 )}
 
                 {viewMode === "kanban" && (
-                    <div className="h-full min-h-[600px]">
+                    <div className="h-full min-h-[600px] animate-in fade-in duration-300">
                         <TaxKanbanBoard />
                     </div>
                 )}
 
                 {viewMode === "calendar" && (
-                    <div className="h-[700px]">
+                    <div className="h-[700px] animate-in fade-in duration-300">
                         <FullTaxCalendar />
+                    </div>
+                )}
+
+                {viewMode === "calculator" && (
+                    <div className="h-full animate-in fade-in duration-500">
+                        <TaxCalculator />
                     </div>
                 )}
             </div>
