@@ -1,8 +1,12 @@
 "use client";
 
-import { Mail, Phone, MapPin, Globe, Calendar, Building } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Building } from "lucide-react";
 
-export function ClientInfoCard({ client }: { client: any }) {
+interface Client {
+    contactName: string;
+}
+
+export function ClientInfoCard({ client }: { client: Client }) {
     return (
         <div className="bg-card border border-border rounded-lg shadow-sm p-6 space-y-6">
             <div className="flex justify-between items-start">

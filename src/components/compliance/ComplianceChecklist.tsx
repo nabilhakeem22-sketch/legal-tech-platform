@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle2, Circle, MessageCircle, Mail, Send, User, UserPlus, Check } from "lucide-react";
+import { CheckCircle2, Circle, MessageCircle, Mail, Send, UserPlus, Check } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Modal } from "@/components/ui/Modal";
@@ -19,12 +19,16 @@ interface Task {
 }
 
 export function ComplianceChecklist({ data, compact = false }: { data: Task[], compact?: boolean }) {
-    const [tasks, setTasks] = useState<Task[]>([]);
+    const [tasks, setTasks] = useState<Task[]>(data || []);
     const [nudgeTask, setNudgeTask] = useState<Task | null>(null);
     const [assignTask, setAssignTask] = useState<Task | null>(null);
 
+    // Update tasks if prop data changes significantly
     useEffect(() => {
-        setTasks(data || []);
+        if (JSON.stringify(data) !== JSON.stringify(tasks)) {
+            setTasks(data || []);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
     const toggleTask = (id: number) => {
@@ -177,11 +181,11 @@ export function ComplianceChecklist({ data, compact = false }: { data: Task[], c
             >
                 <div className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                        Choose a channel to send a reminder to <span className="font-medium text-foreground">{nudgeTask?.clientName || "the client"}</span> for <span className="font-medium text-foreground">"{nudgeTask?.title}"</span>.
+                        Choose a channel to send a reminder to <span className="font-medium text-foreground">{nudgeTask?.clientName || "the client"}</span> for <span className="font-medium text-foreground">&quot;{nudgeTask?.title}&quot;</span>.
                     </p>
 
                     <div className="bg-muted p-3 rounded-md text-sm italic text-muted-foreground border border-border">
-                        "Dear {nudgeTask?.clientName || "Client"}, this is a gentle reminder regarding the compliance task: "{nudgeTask?.title}" which is due on {nudgeTask?.due}..."
+                        &quot;Dear {nudgeTask?.clientName || "Client"}, this is a gentle reminder regarding the compliance task: &quot;{nudgeTask?.title}&quot; which is due on {nudgeTask?.due}...&quot;
                     </div>
 
                     <div className="grid grid-cols-2 gap-3 pt-2">
@@ -209,8 +213,9 @@ export function ComplianceChecklist({ data, compact = false }: { data: Task[], c
             >
                 <div>
                     <p className="text-sm text-muted-foreground mb-4">
-                        Select a team member to assign to <span className="font-medium text-foreground">"{assignTask?.title}"</span>.
+                        Select a team member to assign to <span className="font-medium text-foreground">&quot;{assignTask?.title}&quot;</span>.
                     </p>
+
                     <div className="space-y-2">
                         {mockTeamMembers.map((member) => (
                             <button

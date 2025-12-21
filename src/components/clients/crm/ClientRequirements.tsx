@@ -1,6 +1,6 @@
 "use client";
 
-import { FileQuestion, MessageCircle, AlertCircle } from "lucide-react";
+import { FileQuestion, MessageCircle } from "lucide-react";
 
 export function ClientRequirements() {
     return (
@@ -12,7 +12,7 @@ export function ClientRequirements() {
                         <FileQuestion className="w-5 h-5 text-orange-500 mt-0.5" />
                         <div>
                             <p className="text-sm font-medium text-foreground">Missing Tax ID Document</p>
-                            <p className="text-xs text-muted-foreground mt-1">Requested 3 days ago for 'TechCorp LLC'</p>
+                            <p className="text-xs text-muted-foreground mt-1">Requested 3 days ago for &apos;TechCorp LLC&apos;</p>
                         </div>
                     </div>
                 </div>

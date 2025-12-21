@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Building2, Plus, Phone, Mail, User as ClientUserIcon } from "lucide-react";
+import { Building2, Plus, Phone, Mail } from "lucide-react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
