@@ -80,10 +80,10 @@ export const regulations = [
 ];
 
 export const complianceTasks = [
-    { id: 1, title: "Submit Annual Tax Return", due: "2025-12-31", completed: false, companyId: "comp_123" },
-    { id: 2, title: "Renew Commercial Register", due: "2026-01-15", completed: true, companyId: "comp_123" },
-    { id: 3, title: "Social Insurance Filing (Form 2)", due: "2025-12-20", completed: false, companyId: "comp_123" },
-    { id: 4, title: "Board Meeting Minutes Ratification", due: "2025-12-25", completed: false, companyId: "comp_123" },
+    { id: 1, title: "Submit Annual Tax Return", due: "2025-12-31", completed: false, companyId: "comp_123", assignee: "Sarah M.", blockedBy: "Client" },
+    { id: 2, title: "Renew Commercial Register", due: "2026-01-15", completed: true, companyId: "comp_123", assignee: "Ahmed E." },
+    { id: 3, title: "Social Insurance Filing (Form 2)", due: "2025-12-20", completed: false, companyId: "comp_123", assignee: "John D.", blockedBy: "Authority" },
+    { id: 4, title: "Board Meeting Minutes Ratification", due: "2025-12-25", completed: false, companyId: "comp_123", assignee: "Sarah M.", blockedBy: "Internal" },
 ];
 
 export const transactions = [
@@ -192,4 +192,11 @@ export const mockClients = [
         totalUnpaid: "$1,200",
         createdAt: new Date().toISOString()
     }
+];
+
+export const mockTeamMembers = [
+    { id: "tm_1", name: "Sarah McCarthy", role: "Senior Associate", initials: "SM" },
+    { id: "tm_2", name: "Ahmed El-Sayed", role: "Legal Consultant", initials: "AE" },
+    { id: "tm_3", name: "John Doe", role: "Paralegal", initials: "JD" },
+    { id: "tm_4", name: "Mona Lisa", role: "Compliance Officer", initials: "ML" },
 ];

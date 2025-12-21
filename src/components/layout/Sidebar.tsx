@@ -6,7 +6,7 @@ import { LayoutDashboard, ShieldCheck, Wallet, Users, Settings } from "lucide-re
 import { cn } from "@/lib/utils";
 
 const navigation = [
-    { name: "Risk Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Management Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Clients", href: "/clients", icon: Users },
     { name: "Tax Management", href: "/tax", icon: ShieldCheck },
     { name: "Compliance Compass", href: "/compass", icon: ShieldCheck }, // Wizard
