@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { DollarSign, TrendingUp, Calculator, AlertCircle } from "lucide-react";
+import { useState } from "react";
+import { DollarSign, Calculator, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Country = "Egypt" | "UAE" | "KSA";
@@ -23,36 +23,30 @@ export function TaxCalculator() {
     const [country, setCountry] = useState<Country>("Egypt");
     const [revenue, setRevenue] = useState<number>(0);
     const [expenses, setExpenses] = useState<number>(0);
-    const [results, setResults] = useState({ vat: 0, corporate: 0, total: 0, net: 0 });
+    // Calculate Tax Logic
+    const rules = taxRules[country];
 
-    useEffect(() => {
-        const rules = taxRules[country];
+    // VAT Calculation
+    const vatPayable = (revenue * (rules.vat / 100)) - (expenses * (rules.vat / 100));
 
-        // VAT Calculation (Simplified: Output VAT on Revenue)
-        // In reality: VAT Payable = Output VAT - Input VAT (on valid expenses)
-        // We'll assume expenses are vatable for this projection
-        const vatPayable = (revenue * (rules.vat / 100)) - (expenses * (rules.vat / 100));
+    // Corporate Tax Calculation
+    const profit = revenue - expenses;
+    let corpTax = 0;
 
-        // Corporate Tax Calculation
-        const profit = revenue - expenses;
-        let corpTax = 0;
-
-        if (country === "UAE" && rules.threshold) {
-            if (profit > rules.threshold) {
-                corpTax = (profit - rules.threshold) * (rules.corporate / 100);
-            }
-        } else {
-            corpTax = Math.max(0, profit * (rules.corporate / 100));
+    if (country === "UAE" && rules.threshold) {
+        if (profit > rules.threshold) {
+            corpTax = (profit - rules.threshold) * (rules.corporate / 100);
         }
+    } else {
+        corpTax = Math.max(0, profit * (rules.corporate / 100));
+    }
 
-        setResults({
-            vat: Math.max(0, vatPayable),
-            corporate: Math.max(0, corpTax),
-            total: Math.max(0, vatPayable + corpTax),
-            net: profit - Math.max(0, corpTax)
-        });
-
-    }, [revenue, expenses, country]);
+    const results = {
+        vat: Math.max(0, vatPayable),
+        corporate: Math.max(0, corpTax),
+        total: Math.max(0, vatPayable + corpTax),
+        net: profit - Math.max(0, corpTax)
+    };
 
     return (
         <div className="grid gap-6 md:grid-cols-2 lg:h-[600px]">
@@ -173,6 +167,6 @@ export function TaxCalculator() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

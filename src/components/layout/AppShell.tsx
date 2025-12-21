@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -39,23 +39,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             )}
 
             {/* Desktop Sidebar */}
-            <div className={cn("hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col transition-all duration-300", collapsed ? "lg:w-20" : "lg:w-64")}>
+            <div className={cn("hidden lg:fixed lg:top-16 lg:bottom-0 lg:z-40 lg:flex lg:flex-col transition-all duration-300", collapsed ? "lg:w-20" : "lg:w-64")}>
                 <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
             </div>
 
             <div className={cn("flex flex-col flex-1 h-full transition-all duration-300", collapsed ? "lg:pl-20" : "lg:pl-64")}>
-                {/* TopBar with Mobile Menu Button */}
-                <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-background shadow-sm border-b border-border lg:hidden px-4 justify-between items-center">
-                    <button
-                        type="button"
-                        className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                        onClick={() => setSidebarOpen(true)}
-                    >
-                        <span className="sr-only">Open sidebar</span>
-                        <Menu className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                    <span className="font-bold text-lg text-indigo-600">Legal Tech</span>
-                </div>
+                {/* Unified TopBar (replaces old AuthHeader + MobileHeader) */}
+                <TopBar onMenuClick={() => setSidebarOpen(true)} />
 
                 {/* Desktop TopBar (Visible only on LG, or we reuse TopBar component differently?) 
             Actually, TopBar contains Search and Profile. It should be visible always. 
@@ -67,9 +57,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             Let's Replace the explicit TopBar usage here with the one we import, 
             and wrap it to inject the Menu button on mobile.
         */}
-                <div className="hidden lg:block">
-                    <TopBar />
-                </div>
+                {/* Desktop TopBar was here, now unified above */}
 
                 {/* Mobile View needs the content of TopBar (Search/Profile) too? 
             Usually yes. 
