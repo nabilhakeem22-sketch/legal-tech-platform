@@ -7,6 +7,10 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Modal } from "@/components/ui/Modal";
 import { CompanyForm } from "@/components/clients/CompanyForm";
+import { ClientInfoCard } from "@/components/clients/crm/ClientInfoCard";
+import { ClientTasks } from "@/components/clients/crm/ClientTasks";
+import { ClientActivity } from "@/components/clients/crm/ClientActivity";
+import { ClientRequirements } from "@/components/clients/crm/ClientRequirements";
 
 interface Client {
     id: string;
@@ -31,7 +35,7 @@ export default function ClientDetailPage() {
     const params = useParams<{ id: string }>();
     const [client, setClient] = useState<Client | null>(null);
     const [companies, setCompanies] = useState<Company[]>([]);
-    const [activeTab, setActiveTab] = useState("companies"); // Default to Companies as requested by "Portfolio" view importance
+    const [activeTab, setActiveTab] = useState("overview"); // Default to Overview (CRM View)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -106,7 +110,7 @@ export default function ClientDetailPage() {
             {/* Tabs */}
             <div className="border-b border-border">
                 <nav className="-mb-px flex space-x-8">
-                    {['Overview', 'Companies', 'Portal Settings'].map((tab) => (
+                    {['Overview', 'Companies', 'Financials', 'Portal Settings'].map((tab) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab.toLowerCase().split(' ')[0])}
@@ -124,6 +128,23 @@ export default function ClientDetailPage() {
             </div>
 
             {/* Content */}
+            {/* Content */}
+            {activeTab === 'overview' && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Left Column: Activity & Requirements */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <ClientActivity />
+                        <ClientRequirements />
+                    </div>
+
+                    {/* Right Column: Info & Tasks */}
+                    <div className="space-y-6">
+                        <ClientInfoCard client={client} />
+                        <ClientTasks />
+                    </div>
+                </div>
+            )}
+
             {activeTab === 'companies' && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {companies.map((company) => (
@@ -175,9 +196,9 @@ export default function ClientDetailPage() {
                 </div>
             )}
 
-            {activeTab === 'overview' && (
-                <div className="p-4 bg-muted/50 rounded text-muted-foreground text-center">
-                    Financial Overview & Contact Details Placeholder
+            {activeTab === 'financials' && (
+                <div className="p-12 text-center border-2 border-dashed border-border rounded-lg">
+                    <p className="text-muted-foreground">Financial Widgets & Billing History will appear here.</p>
                 </div>
             )}
 
